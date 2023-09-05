@@ -12,7 +12,7 @@ void Cling::Init()
 }
 void Cling::CodeEditor()
 {
-	ImGuiWindowFlags flag = ImGuiWindowFlags_NoDecoration && ImGuiWindowFlags_NoTitleBar\;
+	ImGuiWindowFlags flag = ImGuiWindowFlags_NoDecoration && ImGuiWindowFlags_NoTitleBar;
 	ImGui::Begin("Text Editor", nullptr, flag);
 	Texteditor.Render("TextEditor");
 	ImGui::End();
