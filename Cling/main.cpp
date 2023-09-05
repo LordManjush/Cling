@@ -4,7 +4,7 @@
 #include <imgui_impl_opengl3.h>
 #include <glad/glad.h>
 #include <iostream>
-
+#include "Editor.h"
 int main()
 {
 	// Initialize GLFW
@@ -50,7 +50,9 @@ int main()
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-	ImGui::StyleColorsDark();
+	ImGui::Helper::DarkMode();
+	auto fancyFont = io.Fonts->AddFontFromFileTTF(
+		"./Data/Font/Montserrat-Regular.ttf", 20);
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
 
@@ -71,11 +73,10 @@ int main()
 		ImGui::NewFrame();
 
 		ImGui::DockSpaceOverViewport();
+		ImGui::PushFont(fancyFont);
 		// ImGUI window creation
-		ImGui::Begin("My name is window, ImGUI window");
-
-		ImGui::End();
-
+		Cling::CodeEditor();
+		ImGui::PopFont();
 		// Renders the ImGUI elements
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

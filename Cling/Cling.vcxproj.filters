@@ -14,6 +14,12 @@
     <Filter Include="Resource Files\imgui">
       <UniqueIdentifier>{cf956ab7-90f5-465a-bcb2-5c2acdaf62a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\TextEditor\Main">
+      <UniqueIdentifier>{44d045c2-4d91-4569-a470-97aa7a913717}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\imgui\Extra">
+      <UniqueIdentifier>{a2ae6474-1f8e-4ee4-8d94-991f068d6683}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -43,6 +49,15 @@
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>Resource Files\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="imgui\TextEditor.cpp">
+      <Filter>Resource Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImguiHelper.cpp">
+      <Filter>Resource Files\imgui\Extra</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor.cpp">
+      <Filter>src\TextEditor\Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -71,6 +86,15 @@
     </ClInclude>
     <ClInclude Include="imgui\imgui_impl_opengl3_loader.h">
       <Filter>Resource Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\TextEditor.h">
+      <Filter>Resource Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImguiHelper.h">
+      <Filter>Resource Files\imgui\Extra</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor.h">
+      <Filter>src\TextEditor\Main</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
