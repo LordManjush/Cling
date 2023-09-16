@@ -14,6 +14,7 @@
 #pragma endregion
 #pragma endregion
 
+Cling::App app;
 int main()
 {
 #pragma region Initialize GLFW
@@ -61,8 +62,8 @@ int main()
 	ImGui_ImplOpenGL3_Init("#version 330");
 #pragma endregion
 
-	Cling::Init();
 	
+	app.Init();
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
 	{
@@ -82,7 +83,7 @@ int main()
 		ImGui::PushFont(fancyFont);
 #pragma endregion
 
-		Cling::CodeEditor();
+		app.Run();
 
 #pragma region Render, Pop, Swap, Poll
 		ImGui::PopFont();
