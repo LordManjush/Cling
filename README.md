@@ -1,1 +1,1 @@
-# A Code editor. I am adding glsl first then other languages.
+# Best light weight Code editor. 
