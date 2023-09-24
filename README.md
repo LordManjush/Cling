@@ -1,1 +1,1 @@
-# Best light weight Code editor. 
+# A light weight code editor (Under development)
