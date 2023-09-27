@@ -1,1 +1,3 @@
-# Best light weight Code editor. 
+# A light weight code editor (Under development)
+
+Sample version - https://lordmanjush.itch.io/cling
