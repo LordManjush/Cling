@@ -1,6 +1,4 @@
 #pragma once
-#include <imgui.h>
-#include <TextEditor.h>
 #include "ImguiHelper.h"
 
 namespace Cling
@@ -9,6 +7,7 @@ namespace Cling
 	{
 	private:
 		void CodeEditor();
+		
 		void ProjectView();
 		void TaskBar();
 		void Console();

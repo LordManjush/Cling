@@ -1,11 +1,18 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "ImguiHelper.h"
 
+struct Languages
+{
+	bool CPlusPlus;
+	bool Python;
+	bool C;
 
+	void SetUpLanguage(TextEditor& editor);
+};
 struct File
 {
-	char buf[255];
 	std::string name = "NewFile";
 	std::string code;
 };
