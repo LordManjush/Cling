@@ -1,7 +1,7 @@
 #include "Editor.h"
 #include "Directory.h"
 #include <iostream>
-
+#include <direct.h>
 #include <windows.h>
 
 TextEditor Texteditor;
@@ -10,17 +10,20 @@ std::string file_s;
 std::string CurrentFilePath;
 std::fstream file;
 std::fstream newFileOpen;
+std::fstream OnOpenNewFile;
 std::ofstream Save_file;
 std::string path;
 std::string code;
 std::string folderpath;
 std::string NewFileName;
-#include <direct.h>
+
+bool OnOpen = false;
 void Cling::App::Init()
 {
 	Texteditor.SetReadOnly(false);
 	Texteditor.SetPalette(Texteditor.GetDarkPalette());
 	Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::CPlusPlus());
+	OnOpen = true;
 }
 
 void Cling::App::TaskBar()
@@ -63,6 +66,106 @@ void Cling::App::TaskBar()
 		ImGuiFileDialog::Instance()->Close();
 		ImGui::CloseCurrentPopup();
 	}
+	if (OnOpen == true)
+	{
+
+		if (ImGui::BeginPopupModal("Open/Create File"))
+		{
+			if (ImGui::BeginPopupModal("Create File"))
+			{
+				if (ImGuiFileDialog::Instance()->Display("SelectFolder"))
+				{
+					// action if OK
+					if (ImGuiFileDialog::Instance()->IsOk())
+					{
+						folderpath = ImGuiFileDialog::Instance()->GetCurrentPath();
+					}
+
+					// close
+					ImGuiFileDialog::Instance()->Close();
+				}
+				ImGui::InputText("##FileName", &NewFileName);
+
+				if (ImGui::Button("SelectFolder"))
+				{
+					ImGuiFileDialog::Instance()->OpenDialog("SelectFolder", "Select Folder", nullptr, ".\ ");
+				}
+				std::string temppath = folderpath + "\\" + NewFileName;
+				ImGui::Text(temppath.c_str());
+
+
+				if (ImGui::Button("Create") && folderpath.length() >= 3 && NewFileName.length() > 0)
+				{
+					std::ofstream file(folderpath + "\\" + NewFileName);
+					CurrentFilePath = folderpath + "\\" + NewFileName;
+					// action
+					OnOpenNewFile.open(CurrentFilePath, std::ios_base::in);
+					code = "";
+					if (OnOpenNewFile.is_open()) {   //checking whether the file is open
+						std::string g;
+						while (getline(OnOpenNewFile, g))
+						{ //read data from file object and put it into string.
+							code = code + g + "\n";
+						}
+						OnOpenNewFile.close(); //close the file object.
+					}
+					Texteditor.SetText(code);
+					file_s = NewFileName;
+					NewFileName = "";
+					folderpath = "";
+					OnOpen = false;
+					ImGui::CloseCurrentPopup();
+				}
+				if (ImGui::IsKeyPressed(ImGuiKey_Escape))
+				{
+					ImGui::CloseCurrentPopup();
+				}
+				ImGui::EndPopup();
+			}
+			if (ImGuiFileDialog::Instance()->Display("OpenFile"))
+			{
+
+				// action if OK
+				if (ImGuiFileDialog::Instance()->IsOk())
+				{
+					file_s = ImGuiFileDialog::Instance()->GetCurrentFileName();
+					path = ImGuiFileDialog::Instance()->GetFilePathName();
+					CurrentFilePath = path;
+					// action
+					file.open(path, std::ios_base::in);
+					code = "";
+					if (file.is_open()) {   //checking whether the file is open
+						std::string tp;
+						while (getline(file, tp)) { //read data from file object and put it into string.
+							code = code + tp + "\n";
+						}
+						file.close(); //close the file object.
+					}
+					Texteditor.SetText(code);
+					OnOpen = false;
+				}
+
+				// close
+				ImGuiFileDialog::Instance()->Close();
+
+				ImGui::CloseCurrentPopup();
+
+			}
+			if (ImGui::Button("New File"))
+			{
+				ImGui::OpenPopup("Create File");
+				
+			}
+			if (ImGui::Button("Open"))
+			{
+				ImGuiFileDialog::Instance()->OpenDialog("OpenFile", "Open File", ".cpp, .c, .h, .hpp, .rs, .cs, .txt, .py, .js, .html, .jar, .bat, .shell", "./ ");
+			}
+			ImGui::EndPopup();
+
+		}
+		ImGui::OpenPopup("Open/Create File");
+	}
+	
 }
 
 void Cling::App::CodeEditor()
@@ -122,7 +225,6 @@ void Cling::App::CodeEditor()
 				Texteditor.Paste();
 			}
 			ImGui::Separator();
-
 			if (ImGui::MenuItem("Select all", nullptr, nullptr))
 			{
 				Texteditor.SetSelection(TextEditor::Coordinates(), TextEditor::Coordinates(Texteditor.GetTotalLines(), 0));
@@ -142,6 +244,26 @@ void Cling::App::CodeEditor()
 			if (ImGui::MenuItem("C"))
 			{
 				Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::C());
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Preferences"))
+		{
+			if (ImGui::MenuItem("Dark Mode"))
+			{
+				ImGui::Helper::DarkMode();
+				Texteditor.SetPalette(Texteditor.GetDarkPalette());
+			}
+			if (ImGui::MenuItem("Light Mode"))
+			{
+				ImGui::Helper::LightMode();
+				Texteditor.SetPalette(Texteditor.GetLightPalette());
+
+			}
+			if (ImGui::MenuItem("Retro Mode"))
+			{
+				ImGui::Helper::RetroMode();
+				Texteditor.SetPalette(Texteditor.GetRetroBluePalette());
 			}
 			ImGui::EndMenu();
 		}
@@ -221,6 +343,11 @@ void Cling::App::CodeEditor()
 	if (ImGui::Button("New"))
 	{
 		ImGui::OpenPopup("New File");
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Open"))
+	{
+		ImGuiFileDialog::Instance()->OpenDialog("SelectFile", "Select File", ".cpp, .c, .h, .hpp, .rs, .cs, .txt, .py, .js, .html, .jar, .bat, .shell", "./ ");
 	}
 	if (file_s.length() > 0)
 	{

@@ -10,5 +10,7 @@ namespace ImGui
 	namespace Helper
 	{
 		void DarkMode();
+		void LightMode();
+		void RetroMode();
 	}
 }
