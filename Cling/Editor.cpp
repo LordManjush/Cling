@@ -96,25 +96,37 @@ void Cling::App::CodeEditor()
 			bool ro = Texteditor.IsReadOnly();
 
 			if (ImGui::MenuItem("Undo", "Ctrl-Z", nullptr, !ro && Texteditor.CanUndo()))
+			{
 				Texteditor.Undo();
+			}
 			if (ImGui::MenuItem("Redo", "Ctrl-Y", nullptr, !ro && Texteditor.CanRedo()))
+			{
 				Texteditor.Redo();
-
+			}
 			ImGui::Separator();
 
 			if (ImGui::MenuItem("Copy", "Ctrl-C", nullptr, Texteditor.HasSelection()))
+			{
 				Texteditor.Copy();
+			}
 			if (ImGui::MenuItem("Cut", "Ctrl-X", nullptr, !ro && Texteditor.HasSelection()))
+			{
 				Texteditor.Cut();
+			}
 			if (ImGui::MenuItem("Delete", "Del", nullptr, !ro && Texteditor.HasSelection()))
+			{
 				Texteditor.Delete();
+			}
 			if (ImGui::MenuItem("Paste", "Ctrl-V", nullptr, !ro && ImGui::GetClipboardText() != nullptr))
+			{	
 				Texteditor.Paste();
-
+			}
 			ImGui::Separator();
 
 			if (ImGui::MenuItem("Select all", nullptr, nullptr))
+			{
 				Texteditor.SetSelection(TextEditor::Coordinates(), TextEditor::Coordinates(Texteditor.GetTotalLines(), 0));
+			}
 			ImGui::EndMenu();
 		}
 		if (ImGui::BeginMenu("Language"))
@@ -131,6 +143,12 @@ void Cling::App::CodeEditor()
 			{
 				Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::C());
 			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Help"))
+		{
+			ImGui::Text("Made With Opengl and imgui");
+			// Maybe some other stuff here.
 			ImGui::EndMenu();
 		}
 		ImGui::EndMenuBar();
