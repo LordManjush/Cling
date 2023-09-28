@@ -5,15 +5,22 @@
 #include <windows.h>
 
 TextEditor Texteditor;
-Languages lang;
+//For showing the current file name
 std::string file_s;
+//Path used for loading file to editor
 std::string CurrentFilePath;
-std::fstream file;
+
+std::fstream Selectfile;
 std::fstream newFileOpen;
 std::fstream OnOpenNewFile;
 std::ofstream Save_file;
+
+
 std::string path;
+
 std::string code;
+
+//New file
 std::string folderpath;
 std::string NewFileName;
 
@@ -35,7 +42,6 @@ void Cling::App::TaskBar()
 	ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtention, ".py", ImVec4(0.0f, 1.0f, 1.0f, 0.9f));
 	if (ImGuiFileDialog::Instance()->Display("SelectFile"))
 	{
-
 		// action if OK
 		if (ImGuiFileDialog::Instance()->IsOk())
 		{
@@ -43,18 +49,17 @@ void Cling::App::TaskBar()
 			path = ImGuiFileDialog::Instance()->GetFilePathName();
 			CurrentFilePath = path;
 			// action
-			file.open(path, std::ios_base::in);
+			Selectfile.open(path, std::ios_base::in);
 			code = "";
-			if (file.is_open()) {   //checking whether the file is open
+			if (Selectfile.is_open()) {   //checking whether the file is open
 				std::string tp;
-				while (getline(file, tp)) { //read data from file object and put it into string.
+				while (getline(Selectfile, tp)) { //read data from file object and put it into string.
 					code = code + tp + "\n";
 				}
-				file.close(); //close the file object.
+				Selectfile.close(); //close the file object.
 			}
 			Texteditor.SetText(code);
 		}
-
 		// close
 		ImGuiFileDialog::Instance()->Close();
 
@@ -132,14 +137,14 @@ void Cling::App::TaskBar()
 					path = ImGuiFileDialog::Instance()->GetFilePathName();
 					CurrentFilePath = path;
 					// action
-					file.open(path, std::ios_base::in);
+					Selectfile.open(path, std::ios_base::in);
 					code = "";
-					if (file.is_open()) {   //checking whether the file is open
+					if (Selectfile.is_open()) {   //checking whether the file is open
 						std::string tp;
-						while (getline(file, tp)) { //read data from file object and put it into string.
+						while (getline(Selectfile, tp)) { //read data from file object and put it into string.
 							code = code + tp + "\n";
 						}
-						file.close(); //close the file object.
+						Selectfile.close(); //close the file object.
 					}
 					Texteditor.SetText(code);
 					OnOpen = false;
@@ -158,7 +163,7 @@ void Cling::App::TaskBar()
 			}
 			if (ImGui::Button("Open"))
 			{
-				ImGuiFileDialog::Instance()->OpenDialog("OpenFile", "Open File", ".cpp, .c, .h, .hpp, .rs, .cs, .txt, .py, .js, .html, .jar, .bat, .shell", "./ ");
+				ImGuiFileDialog::Instance()->OpenDialog("OpenFile", "Open File", ".cpp, .c, .h, .hpp, .rs, .cs, .txt, .py, .js, .html, .sql, .jar, .bat, .shell, glsl, hlsl", "./ ");
 			}
 			ImGui::EndPopup();
 
@@ -170,6 +175,7 @@ void Cling::App::TaskBar()
 
 void Cling::App::CodeEditor()
 {
+
 	ImGuiWindowFlags flag = ImGuiWindowFlags_MenuBar;
 	ImGui::Begin("Editor", nullptr, flag);
 	if (ImGui::BeginMenuBar())
@@ -189,7 +195,7 @@ void Cling::App::CodeEditor()
 			}
 			if (ImGui::MenuItem("Open"))
 			{
-				ImGuiFileDialog::Instance()->OpenDialog("SelectFile", "Select File", ".cpp, .c, .h, .hpp, .rs, .cs, .txt, .py, .js, .html, .jar, .bat, .shell", "./ ");
+				ImGuiFileDialog::Instance()->OpenDialog("SelectFile", "Select File", ".cpp, .c, .h, .hpp, .rs, .cs, .txt, .py, .js, .html, .sql, .jar, .bat, .shell, glsl, hlsl", "./ ");
 			}
 			// Maybe some other stuff here.
 			ImGui::EndMenu();
@@ -237,13 +243,30 @@ void Cling::App::CodeEditor()
 			{
 				Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::CPlusPlus());
 			}
+			if (ImGui::MenuItem("C"))
+			{
+				Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::C());
+			}
 			if (ImGui::MenuItem("Python"))
 			{
 				Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::Python());
 			}
-			if (ImGui::MenuItem("C"))
+			if (ImGui::MenuItem("Lua"))
 			{
-				Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::C());
+				Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::Lua());
+			}
+
+			if (ImGui::MenuItem("GLSL"))
+			{
+				Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::GLSL());
+			}
+			if (ImGui::MenuItem("HLSL"))
+			{
+				Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::HLSL());
+			}
+			if (ImGui::MenuItem("SQL"))
+			{
+				Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::SQL());
 			}
 			ImGui::EndMenu();
 		}
@@ -347,7 +370,7 @@ void Cling::App::CodeEditor()
 	ImGui::SameLine();
 	if (ImGui::Button("Open"))
 	{
-		ImGuiFileDialog::Instance()->OpenDialog("SelectFile", "Select File", ".cpp, .c, .h, .hpp, .rs, .cs, .txt, .py, .js, .html, .jar, .bat, .shell", "./ ");
+		ImGuiFileDialog::Instance()->OpenDialog("SelectFile", "Select File", ".cpp, .c, .h, .hpp, .rs, .cs, .txt, .py, .js, .html, .sql, .jar, .bat, .shell", "./ ");
 	}
 	if (file_s.length() > 0)
 	{

@@ -3165,23 +3165,15 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::Python()
 	if (!inited)
 	{
 		static const char* const keywords[] = {
-			"def","and", "break", "do", "", "else", "elseif", "end", "false", "for", "function", "if", "in", "", "local", "nil", "not", "or", "repeat", "return", "then", "true", "until", "while", "True", "False"
+			"and","or", "not", "if", "elif", "else", "for", "while", "break", "as", "def", "lambda", "pass", "return", "True", "False", "try", "with", "assert", "class", "continue", "del", "except", "finally", "from", "global", "import", "in", "is", "None", "nonlocal", "raise", "yield", "async", "await", "with", "pass", "from"
 		};
 
 		for (auto& k : keywords)
 			langDef.mKeywords.insert(k);
 
 		static const char* const identifiers[] = {
-			"def", "eval", "import","assert", "collectgarbage", "dofile", "error", "getmetatable", "ipairs", "loadfile", "load", "loadstring",  "next",  "pairs",  "pcall",  "print",  "rawequal",  "rawlen",  "rawget",  "rawset",
-			"select",  "setmetatable",  "tonumber",  "tostring",  "type",  "xpcall",  "_G",  "_VERSION","arshift", "band", "bnot", "bor", "bxor", "btest", "extract", "lrotate", "lshift", "replace",
-			"rrotate", "rshift", "create", "resume", "running", "status", "wrap", "yield", "isyieldable", "debug","getuservalue", "gethook", "getinfo", "getlocal", "getregistry", "getmetatable",
-			"getupvalue", "upvaluejoin", "upvalueid", "setuservalue", "sethook", "setlocal", "setmetatable", "setupvalue", "traceback", "close", "flush", "input", "lines", "open", "output", "popen",
-			"read", "tmpfile", "type", "write", "close", "flush", "lines", "read", "seek", "setvbuf", "write", "__gc", "__tostring", "abs", "acos", "asin", "atan", "ceil", "cos", "deg", "exp", "tointeger",
-			"floor", "fmod", "ult", "log", "max", "min", "modf", "rad", "random", "randomseed", "sin", "sqrt", "string", "tan", "type", "atan2", "cosh", "sinh", "tanh",
-			"pow", "frexp", "ldexp", "log10", "pi", "huge", "maxinteger", "mininteger", "loadlib", "searchpath", "seeall", "preload", "cpath", "path", "searchers", "loaded", "module", "require", "clock",
-			"date", "difftime", "execute", "exit", "getenv", "remove", "rename", "setlocale", "time", "tmpname", "byte", "char", "dump", "find", "format", "gmatch", "gsub", "len", "lower", "match", "rep",
-			"reverse", "sub", "upper", "pack", "packsize", "unpack", "concat", "maxn", "insert", "pack", "unpack", "remove", "move", "sort", "offset", "codepoint", "chr", "len", "codes", "charpattern",
-			"coroutine", "table", "io", "os", "string", "utf8", "bit32", "math", "debug", "package", "range"
+			"and","or", "not", "if", "elif", "else", "for", "while", "break", "as", "def", "lambda", "pass", "return", "True", "False", "try", "with", "assert", "class", "continue", "del", "except", "finally", "from", "global", "import", "in", "is", "None", "nonlocal", "raise", "yield", "async", "await",
+			"from", "range", "print", "with", "pass", "tkinter", "sys", "io", "string", "textwrap", "numby", "json", "pygame", "requests", "tabulate", "inflection", "difflib", "pandas", "os"
 		};
 		for (auto& k : identifiers)
 		{
@@ -3203,7 +3195,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::Python()
 		langDef.mSingleLineComment = "#";
 
 		langDef.mCaseSensitive = true;
-		langDef.mAutoIndentation = false;
+		langDef.mAutoIndentation = true;
 
 		langDef.mName = "Python";
 
