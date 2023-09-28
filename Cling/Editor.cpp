@@ -1,5 +1,4 @@
 #include "Editor.h"
-#include "Directory.h"
 #include <iostream>
 #include <direct.h>
 #include <windows.h>
