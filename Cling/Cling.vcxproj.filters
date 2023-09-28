@@ -64,9 +64,6 @@
     <ClCompile Include="imgui\ImGuiFileDialog.cpp">
       <Filter>Resource Files\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="Directory.cpp">
-      <Filter>src\TextEditor</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -104,9 +101,6 @@
     </ClInclude>
     <ClInclude Include="Editor.h">
       <Filter>src\TextEditor\Main</Filter>
-    </ClInclude>
-    <ClInclude Include="Directory.h">
-      <Filter>src\TextEditor</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imgui_stdlib.h">
       <Filter>Resource Files\imgui</Filter>

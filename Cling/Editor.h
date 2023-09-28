@@ -7,11 +7,7 @@ namespace Cling
 	{
 	private:
 		void CodeEditor();
-		
-		void ProjectView();
 		void TaskBar();
-		void Console();
-		void Properties();
 	public:
 		void Init();
 		void Run();

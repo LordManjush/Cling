@@ -175,9 +175,8 @@ void Cling::App::TaskBar()
 
 void Cling::App::CodeEditor()
 {
-
-	ImGuiWindowFlags flag = ImGuiWindowFlags_MenuBar;
-	ImGui::Begin("Editor", nullptr, flag);
+	ImGui::Begin("Editor", nullptr, ImGuiWindowFlags_MenuBar);
+#pragma region Menu
 	if (ImGui::BeginMenuBar())
 	{
 		if (ImGui::BeginMenu("File"))
@@ -227,7 +226,7 @@ void Cling::App::CodeEditor()
 				Texteditor.Delete();
 			}
 			if (ImGui::MenuItem("Paste", "Ctrl-V", nullptr, !ro && ImGui::GetClipboardText() != nullptr))
-			{	
+			{
 				Texteditor.Paste();
 			}
 			ImGui::Separator();
@@ -381,19 +380,10 @@ void Cling::App::CodeEditor()
 	}
 	ImGui::SameLine();
 	ImGui::Text(Texteditor.GetLanguageDefinition().mName.c_str());
+#pragma endregion
 	Texteditor.Render("TextEditor");
 	ImGui::End();
 }
-void Cling::App::Console()
-{
-
-}
-void Cling::App::ProjectView()
-{
-	ImGui::Begin("Solution Explorer");
-	ImGui::End();
-}
-
 void Cling::App::Run()
 {	
 	TaskBar();

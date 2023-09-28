@@ -157,7 +157,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Directory.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="ImguiHelper.cpp" />
@@ -174,7 +173,6 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Directory.h" />
     <ClInclude Include="Editor.h" />
     <ClInclude Include="ImguiHelper.h" />
     <ClInclude Include="imgui\imconfig.h" />
