@@ -2727,6 +2727,7 @@ static bool TokenizeCStylePunctuation(const char * in_begin, const char * in_end
 	case ';':
 	case ',':
 	case '.':
+	case '#':
 		out_begin = in_begin;
 		out_end = in_begin + 1;
 		return true;
@@ -2742,19 +2743,29 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::CPlusPlus(
 	if (!inited)
 	{
 		static const char* const cppKeywords[] = {
-			"alignas", "alignof", "and", "and_eq", "asm", "atomic_cancel", "atomic_commit", "atomic_noexcept", "auto", "bitand", "bitor", "bool", "break", "case", "catch", "char", "char16_t", "char32_t", "class",
-			"compl", "concept", "const", "constexpr", "const_cast", "continue", "decltype", "default", "delete", "do", "double", "dynamic_cast", "else", "enum", "explicit", "export", "extern", "false", "float",
-			"for", "friend", "goto", "if", "import", "inline", "int", "long", "module", "mutable", "namespace", "new", "noexcept", "not", "not_eq", "nullptr", "operator", "or", "or_eq", "private", "protected", "public",
-			"register", "reinterpret_cast", "requires", "return", "short", "signed", "sizeof", "static", "static_assert", "static_cast", "struct", "switch", "synchronized", "template", "this", "thread_local",
-			"throw", "for","true", "try", "typedef", "typeid", "typename", "union", "unsigned", "using", "virtual", "void", "volatile", "wchar_t", "while", "xor", "xor_eq"
+			"asm", "else", "new", "this", "auto", "enum", "operator", "throw", "bool", "explicit", "private", "true", "break", "export", "protected", "try", "catch", "extern", "public",
+			"typedef", "catch", "const", "false", "register", "typeid", "char", "float", "reinterpret_cast", "typename", "class", "for", "else", "enum", "return", "union", "constant", "friend", "short",
+			"unsigned", "const_cast", "goto", "signed", "using", "continue", "if", "sizeof", "virtual", "default", "inline", "static", "void", "delete", "int", "static_cast", "volatile", "do", "long", "struct", "double", "wchar_t",
+			"mutable", "switch", "while", "dynamic_cast", "namespace", "template", "sizeof", "string", "#include", "import", "iostream", "ifstream", "using", "vector", "push_back", "emplace", "std",
+			"asm", "else", "new", "this", "auto", "enum", "operator", "throw", "bool", "explicit", "private", "true", "break", "export", "protected", "try", "catch", "extern", "public",
+			"typedef", "catch", "const", "false", "register", "typeid", "char", "float", "reinterpret_cast", "typename", "class", "for", "else", "enum", "return", "union", "constant", "friend", "short",
+			"unsigned", "const_cast", "goto", "signed", "using", "continue", "if", "sizeof", "virtual", "default", "inline", "static", "void", "delete", "int", "static_cast", "volatile", "do", "long", "struct", "double", "wchar_t",
+			"mutable", "switch", "while", "dynamic_cast", "namespace", "template", "sizeof", "string", "#include", "import", "iostream", "ifstream", "using", "vector", "push_back()", "emplace", "std",
+			"abort", "abs", "acos", "asin", "atan", "atexit", "atof", "atoi", "atol", "ceil", "clock", "cosh", "ctime", "div", "exit", "fabs", "floor", "fmod", "getchar", "getenv", "isalnum", "isalpha", "isdigit", "isgraph",
+			"ispunct", "isspace", "isupper", "kbhit", "log10", "log2", "log", "memcmp", "modf", "pow", "printf", "sprintf", "snprintf", "putchar", "putenv", "puts", "rand", "remove", "rename", "sinh", "sqrt", "srand", "strcat", "strcmp", "strerror", "time", "tolower", "toupper",
+			"std", "string", "vector", "map", "unordered_map", "set", "unordered_set", "min", "max", "ofstream", "fstream", "cout", "cos", "rsize_t", "array", "bitor", "time_t", "main", "<iostream>", "ifstream", "abstract"
 		};
 		for (auto& k : cppKeywords)
 			langDef.mKeywords.insert(k);
 
 		static const char* const identifiers[] = {
+			"asm", "else", "new", "this", "auto", "enum", "operator", "throw", "bool", "explicit", "private", "true", "break", "export", "protected", "try", "catch", "extern", "public",
+			"typedef", "catch", "const", "false", "register", "typeid", "char", "float", "reinterpret_cast", "typename", "class", "for", "else", "enum", "return", "union", "constant", "friend", "short",
+			"unsigned", "const_cast", "goto", "signed", "using", "continue", "if", "sizeof", "virtual", "default", "inline", "static", "void", "delete", "int", "static_cast", "volatile", "do", "long", "struct", "double", "wchar_t",
+			"mutable", "switch", "while", "dynamic_cast", "namespace", "template", "sizeof", "string", "#include", "import", "iostream", "ifstream", "using", "vector", "push_back()", "emplace", "std",
 			"abort", "abs", "acos", "asin", "atan", "atexit", "atof", "atoi", "atol", "ceil", "clock", "cosh", "ctime", "div", "exit", "fabs", "floor", "fmod", "getchar", "getenv", "isalnum", "isalpha", "isdigit", "isgraph",
 			"ispunct", "isspace", "isupper", "kbhit", "log10", "log2", "log", "memcmp", "modf", "pow", "printf", "sprintf", "snprintf", "putchar", "putenv", "puts", "rand", "remove", "rename", "sinh", "sqrt", "srand", "strcat", "strcmp", "strerror", "time", "tolower", "toupper",
-			"std", "string", "vector", "map", "unordered_map", "set", "unordered_set", "min", "max"
+			"std", "string", "vector", "map", "unordered_map", "set", "unordered_set", "min", "max", "ofstream", "fstream", "main"
 		};
 		for (auto& k : identifiers)
 		{

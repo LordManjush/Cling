@@ -59,7 +59,7 @@ int main()
 	auto fancyFont = io.Fonts->AddFontFromFileTTF(
 		"./Data/Font/Montserrat-Regular.ttf", 20);
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
-	ImGui_ImplOpenGL3_Init("#version 330");
+	ImGui_ImplOpenGL3_Init("#version 100");
 #pragma endregion
 
 	
@@ -69,7 +69,7 @@ int main()
 	{
 #pragma region Clear, Imgui Frame, PushFont and Docking
 		// Specify the color of the background
-		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		// Clean the back buffer and assign the new color to it
 		glClear(GL_COLOR_BUFFER_BIT);
 
