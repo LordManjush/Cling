@@ -379,7 +379,7 @@ void Cling::App::CodeEditor()
 		ImGui::Text(Texteditor.GetLanguageDefinition().mName.c_str());
 #pragma endregion
 		Texteditor.Render(file_s.c_str());
-		if (ImGui::IsKeyDown(ImGuiKey_LeftCtrl) && Texteditor.GetLanguageDefinition().CPlusPlus)
+		/*if (ImGui::IsKeyDown(ImGuiKey_LeftCtrl) && Texteditor.GetLanguageDefinition().CPlusPlus)
 		{
 		
 			if (ImGui::BeginPopupModal("Code Helper", nullptr, ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoCollapse))
@@ -542,7 +542,7 @@ void Cling::App::CodeEditor()
 			}
 			ImGui::OpenPopup("Code Helper");
 
-		}
+		}*/
 
 		ImGui::End();
 	}

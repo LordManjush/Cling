@@ -51,7 +51,7 @@ Index of this file:
 #ifndef IMGUI_VERSION
 #include "imgui.h"
 #endif
-
+#define IMGUI_DEFINE_MATH_OPERATORS
 #include <stdio.h>      // FILE*, sscanf
 #include <stdlib.h>     // NULL, malloc, free, qsort, atoi, atof
 #include <math.h>       // sqrtf, fabsf, fmodf, powf, floorf, ceilf, cosf, sinf
