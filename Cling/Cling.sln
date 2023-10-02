@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cling", "Cling.vcxproj", "{23EA7A4E-B9FC-4916-B7F3-6C8AE66C5FC1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClingApp", "..\ClingApp\ClingApp.vcxproj", "{D28541CF-2B98-4174-B628-EBC104E40314}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{23EA7A4E-B9FC-4916-B7F3-6C8AE66C5FC1}.Release|x64.Build.0 = Release|x64
 		{23EA7A4E-B9FC-4916-B7F3-6C8AE66C5FC1}.Release|x86.ActiveCfg = Release|Win32
 		{23EA7A4E-B9FC-4916-B7F3-6C8AE66C5FC1}.Release|x86.Build.0 = Release|Win32
+		{D28541CF-2B98-4174-B628-EBC104E40314}.Debug|x64.ActiveCfg = Debug|x64
+		{D28541CF-2B98-4174-B628-EBC104E40314}.Debug|x64.Build.0 = Debug|x64
+		{D28541CF-2B98-4174-B628-EBC104E40314}.Debug|x86.ActiveCfg = Debug|Win32
+		{D28541CF-2B98-4174-B628-EBC104E40314}.Debug|x86.Build.0 = Debug|Win32
+		{D28541CF-2B98-4174-B628-EBC104E40314}.Release|x64.ActiveCfg = Release|x64
+		{D28541CF-2B98-4174-B628-EBC104E40314}.Release|x64.Build.0 = Release|x64
+		{D28541CF-2B98-4174-B628-EBC104E40314}.Release|x86.ActiveCfg = Release|Win32
+		{D28541CF-2B98-4174-B628-EBC104E40314}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

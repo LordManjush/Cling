@@ -162,7 +162,7 @@ void Cling::App::TaskBar()
 			}
 			if (ImGui::Button("Open"))
 			{
-				ImGuiFileDialog::Instance()->OpenDialog("OpenFile", "Open File", ".cpp, .c, .h, .hpp, .rs, .cs, .txt, .py, .js, .html, .sql, .jar, .bat, .shell, glsl, hlsl", "./ ");
+				ImGuiFileDialog::Instance()->OpenDialog("OpenFile", "Open File", ".cpp, .c, .h, .hpp, .rs, .cs, .txt, .py, .js, .html, .sql, .jar, .bat, .shell, .glsl, .hlsl, .css", "./ ");
 			}
 			ImGui::EndPopup();
 
@@ -255,7 +255,10 @@ void Cling::App::CodeEditor()
 				{
 					Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::Lua());
 				}
-
+				if (ImGui::MenuItem("HTML"))
+				{
+					Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::HTML());
+				}
 				if (ImGui::MenuItem("GLSL"))
 				{
 					Texteditor.SetLanguageDefinition(TextEditor::LanguageDefinition::GLSL());
@@ -371,7 +374,7 @@ void Cling::App::CodeEditor()
 		ImGui::SameLine();
 		if (ImGui::Button("Open"))
 		{
-			ImGuiFileDialog::Instance()->OpenDialog("SelectFile", "Select File", ".cpp, .c, .h, .hpp, .rs, .cs, .txt, .py, .js, .html, .sql, .jar, .bat, .shell", "./ ");
+			ImGuiFileDialog::Instance()->OpenDialog("SelectFile", "Select File", ".cpp, .c, .h, .hpp, .rs, .cs, .txt, .py, .js, .html, .sql, .jar, .bat, .shell, .hlsl, .glsl, .css", "./ ");
 		}
 		
 		ImGui::SameLine();

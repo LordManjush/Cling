@@ -1,15 +1,9 @@
-#include <iostream>
+#include "Cling.h"
 
-#include "imgui.h"
-#include "imgui-SFML.h"
-
-#include <SFML/Graphics.hpp>
-#include <SFML/System/Clock.hpp>
-#include <SFML/Window/Event.hpp>
-#include "Editor.h"
 
 Cling::App app;
-int main() {
+void Cling::CLingApp()
+{
     sf::RenderWindow window{ sf::VideoMode(1080, 700), "Cling" };
     window.setFramerateLimit(60);
 
@@ -39,7 +33,7 @@ int main() {
 
         ImGui::SFML::Update(window, deltaClock.restart());
 
-       
+
 
         ImGui::PushFont(fancyFont);
         ImGui::DockSpaceOverViewport();
@@ -52,6 +46,4 @@ int main() {
     }
 
     ImGui::SFML::Shutdown();
-
-    return 0;
 }
